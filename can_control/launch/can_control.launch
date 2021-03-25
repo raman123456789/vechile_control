@@ -1,0 +1,27 @@
+<launch>
+
+  <!-- CAN realated  -->
+  <arg name="baud_rate" default='250000' />
+
+  <arg name="channel_can" default="can0" />
+
+  <arg name="control_mode" default="vision" /> <!-- change it to 'vision' for vision control or to 'manual' for manual mode' -->
+
+  <param name="/baud_rate"  value="$(arg baud_rate)" /> 
+
+  <param name='/channel_can' value="$(arg channel_can) "/>
+
+  <param name ='/bustype_can' value='socketcan'/>
+
+  <param name="/control"  value="$(arg control_mode)" /> 
+
+    <!-- end of CAN related -->
+
+
+
+  <node name="can_control" pkg="can_control" type="ros_mobile_can.py"  />
+  <node name="timer_" pkg="can_control" type="timer.py"  />
+  <!-- <node pkg='turtlesim' type='turtlesim_node' name='turtlesim_node'/> -->
+
+</launch>
+

@@ -1,0 +1,33 @@
+
+<launch>
+<arg name="gui" default='false'/>
+<arg name='channel_can' default="vcan0"/>
+
+
+
+
+
+<!-- <include file="$(find can_control)/launch/can_control.launch" />
+<arg name="hoge" value="fuga" /> -->
+<include file="$(find can_control)/launch/can_control.launch">
+  <!-- all vars that included.launch requires must be set -->
+  <arg name="channel_can" value="$(arg channel_can" />
+</include>
+
+
+<include file="$(find zed_display_rviz)/launch/display_zed2.launch" />
+<!-- <include file="$(find zed_wrapper)/launch/zed2.launch" /> -->
+
+<param name="/object_detection/od_enabled"  value='true' /> 
+<param name="/object_detection/object_tracking_enabled"  value='true' /> 
+<param name="/object_detection/body_fitting"  value='true' /> 
+<param name="/object_detection/mc_people"  value='true'/> 
+<param name="/object_detection/mc_vehicle"  value='true' /> 
+<param name="/object_detection/mc_animal"  value='true' />
+
+
+<node name='vision_control' pkg='vision_control' type='vison_control.py' output='screen' />
+
+
+
+</launch>
